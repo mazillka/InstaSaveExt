@@ -1,7 +1,7 @@
 # InstaSaveExt
 
 Chrome:
-https://chrome.google.com/webstore/detail/instasave/abibgkmmeglmaiomdanklcpjmefgcjmc?hl=ru
+https://chrome.google.com/webstore/detail/instasave/abibgkmmeglmaiomdanklcpjmefgcjmc
 
 Opera:
-https://addons.opera.com/ru/extensions/details/instasave/?display=en
+https://addons.opera.com/ru/extensions/details/instasave
