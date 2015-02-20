@@ -2,15 +2,11 @@
     "manifest_version": 2,
 
     "name": "InstaSave",
-    "version": "1.4",
+	"short_name": "InstaSave",
+    "version": "1.5",
 	"author": "Mazillka",
 	"description": "Easy way to save photos and videos from Instagram.com",
 
-	"permissions": [
-		"*://instagram.com/*",
-		"contextMenus"
-	],
-	
     "icons": {
         "16": "icons/16x16.png",
         "32": "icons/32x32.png",
@@ -19,6 +15,12 @@
 		"128": "icons/128x128.png"
     },
 
+	"permissions": [
+		"*://instagram.com/*",
+		"contextMenus",
+		"tabs"
+	],
+	
 	"background": { 
 		"persistent": false,
 		"scripts": [ "background.js" ]
@@ -31,5 +33,7 @@
 			"matches": [ "*://instagram.com/*"],
 			"run_at": "document_idle"
 		}
-	]
+	],
+	
+	"options_page": "donate.html"
  }

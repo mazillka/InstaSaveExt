@@ -67,3 +67,12 @@ function Save(){
 	a.click();
 	a.remove();
 };
+
+chrome.runtime.onInstalled.addListener(function() {
+	chrome.tabs.create({'url': chrome.extension.getURL('donate.html')});
+});
+
+chrome.runtime.onUpdateAvailable.addListener(function() {
+	chrome.tabs.create({'url': chrome.extension.getURL('donate.html')});
+	chrome.runtime.reload();
+});
