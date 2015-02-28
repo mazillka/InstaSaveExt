@@ -48,3 +48,8 @@ chrome.runtime.onInstalled.addListener(function () {
 		'url' : chrome.extension.getURL('html/donate.html')
 	});
 });
+
+chrome.runtime.onUpdateAvailable.addListener(function() {
+	chrome.tabs.create({'url': chrome.extension.getURL('html/donate.html')});
+	chrome.runtime.reload();
+});
