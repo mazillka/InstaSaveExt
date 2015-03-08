@@ -5,7 +5,7 @@ chrome.extension.onMessage.addListener(function (request) {
 	switch (request.Type) {
 	case 'create':
 		chrome.contextMenus.create({
-			id : 'subMenu',
+			id : 'menu',
 			enabled : false,
 			title : 'Save as...',
 			contexts : ['all'],
@@ -13,19 +13,19 @@ chrome.extension.onMessage.addListener(function (request) {
 		});
 		break;
 	case 'image':
-		chrome.contextMenus.update('subMenu', {
+		chrome.contextMenus.update('menu', {
 			title : 'Save image as...',
 			enabled : true
 		});
 		break;
 	case 'video':
-		chrome.contextMenus.update('subMenu', {
+		chrome.contextMenus.update('menu', {
 			title : 'Save video as...',
 			enabled : true
 		});
 		break;
 	case 'none':
-		chrome.contextMenus.update('subMenu', {
+		chrome.contextMenus.update('menu', {
 			enabled : false,
 			title : 'nothin to save'
 		});
@@ -33,23 +33,22 @@ chrome.extension.onMessage.addListener(function (request) {
 	}
 });
 
-function Save() {
+chrome.contextMenus.onClicked.addListener(function () {
 	var a = document.createElement('a');
 	a.href = Url;
 	a.download = 'temp.*';
 	a.click();
 	a.remove();
-}
-
-chrome.contextMenus.onClicked.addListener(Save);
-
-chrome.runtime.onInstalled.addListener(function () {
-	chrome.tabs.create({
-		'url' : chrome.extension.getURL('html/donate.html')
-	});
 });
 
-chrome.runtime.onUpdateAvailable.addListener(function() {
-	chrome.tabs.create({'url': chrome.extension.getURL('html/donate.html')});
-	chrome.runtime.reload();
+chrome.runtime.onInstalled.addListener(function (details) {
+	if (details.reason == "install") {
+		chrome.tabs.create({
+			'url' : chrome.extension.getURL('html/donate.html')
+		});
+	} else if (details.reason == "update") {
+		chrome.tabs.create({
+			'url' : chrome.extension.getURL('html/donate.html')
+		});			
+	}
 });

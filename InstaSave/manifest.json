@@ -1,39 +1,34 @@
 {
-    "manifest_version": 2,
+	"manifest_version" : 2,
 
-    "name": "InstaSave",
-	"short_name": "InstaSave",
-    "version": "1.6",
-	"author": "Mazillka",
-	"description": "The easiest way to download photos and videos from Instagram.com",
-	
-    "icons": {
-        "16": "icons/16x16.png",
-        "32": "icons/32x32.png",
-        "48": "icons/48x48.png",
-		"64": "icons/64x64.png",
-		"128": "icons/128x128.png"
-    },
+	"name" : "InstaSave",
+	"short_name" : "InstaSave",
+	"version" : "1.7",
+	"author" : "Mazillka",
+	"description" : "The easiest way to download photos and videos from Instagram.com",
 
-	"permissions": [
-		"*://instagram.com/*",
-		"contextMenus",
-		"tabs"
-	],
-	
-	"background": { 
-		"persistent": false,
-		"scripts": [ "js/background.js" ]
+	"icons" : {
+		"16" : "icons/16x16.png",
+		"32" : "icons/32x32.png",
+		"48" : "icons/48x48.png",
+		"64" : "icons/64x64.png",
+		"128" : "icons/128x128.png"
 	},
-	
-	"content_scripts": [
-		{
-			"all_frames": false,
-			"js": [ "js/contentscript.js" ],
-			"matches": [ "*://instagram.com/*"],
-			"run_at": "document_idle"
+
+	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs"],
+
+	"background" : {
+		"persistent" : false,
+		"scripts" : ["js/background.js"]
+	},
+
+	"content_scripts" : [{
+			"all_frames" : true,
+			"js" : ["js/contentscript.js"],
+			"matches" : ["*://instagram.com/*"],
+			"run_at" : "document_idle"
 		}
 	],
-	
-	"options_page": "html/donate.html"
- }
+
+	"options_page" : "html/donate.html"
+}
