@@ -3,7 +3,7 @@
 
 	"name" : "InstaSave",
 	"short_name" : "InstaSave",
-	"version" : "1.7",
+	"version" : "1.8",
 	"author" : "Mazillka",
 	"description" : "The easiest way to download photos and videos from Instagram.com",
 
@@ -15,7 +15,7 @@
 		"128" : "icons/128x128.png"
 	},
 
-	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs"],
+	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs", "downloads"],
 
 	"background" : {
 		"persistent" : false,

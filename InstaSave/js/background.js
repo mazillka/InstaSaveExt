@@ -9,7 +9,7 @@ chrome.extension.onMessage.addListener(function (request) {
 			enabled : false,
 			title : 'Save as...',
 			contexts : ['all'],
-			documentUrlPatterns : ['*://instagram.com/*']
+			documentUrlPatterns : ['*://instagram.com/*']			
 		});
 		break;
 	case 'image':
@@ -26,29 +26,27 @@ chrome.extension.onMessage.addListener(function (request) {
 		break;
 	case 'none':
 		chrome.contextMenus.update('menu', {
-			enabled : false,
-			title : 'nothin to save'
+			title : 'nothin to save',
+			enabled : false
 		});
 		break;
 	}
 });
 
-chrome.contextMenus.onClicked.addListener(function () {
-	var a = document.createElement('a');
-	a.href = Url;
-	a.download = 'temp.*';
-	a.click();
-	a.remove();
+chrome.contextMenus.onClicked.addListener(function (info) {
+	chrome.downloads.download({
+		url : Url
+	});
 });
 
 chrome.runtime.onInstalled.addListener(function (details) {
-	if (details.reason == "install") {
+	if (details.reason == 'install') {
 		chrome.tabs.create({
-			'url' : chrome.extension.getURL('html/donate.html')
+			url : chrome.extension.getURL('html/donate.html')
 		});
-	} else if (details.reason == "update") {
+	} else if (details.reason == 'update') {
 		chrome.tabs.create({
-			'url' : chrome.extension.getURL('html/donate.html')
+			url : chrome.extension.getURL('html/donate.html')
 		});			
 	}
 });
