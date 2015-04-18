@@ -41,7 +41,7 @@ chrome.contextMenus.onClicked.addListener(function (info) {
 
 chrome.commands.onCommand.addListener(function (command) {
 	switch (command) {
-	case "Save as...":
+	case 'Save as...':
 		chrome.tabs.query({
 			active : true
 		}, function (tab) {
@@ -54,15 +54,14 @@ chrome.commands.onCommand.addListener(function (command) {
 							url : response.url
 						});
 					} else {
-						chrome.notifications.clear('msg');
 						chrome.notifications.create('msg', {
-							type : "basic",
-							title : "InstaSave",
-							message : "Nothin to save, place cursor on image or video and try again",
-							iconUrl : "../icons/128x128.png"
+							type : 'basic',
+							title : 'InstaSave',
+							message : 'Nothin to save, place cursor on image or video and try again',
+							iconUrl : '../icons/128x128.png'
 						}, function () {
 							setTimeout(function () {
-								chrome.notifications.clear('msg');
+								chrome.notifications.clear('msg', function () {});
 							}, 5000);
 						});
 					}
