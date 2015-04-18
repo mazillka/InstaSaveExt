@@ -61,7 +61,7 @@ chrome.commands.onCommand.addListener(function (command) {
 							iconUrl : '../icons/128x128.png'
 						}, function () {
 							setTimeout(function () {
-								chrome.notifications.clear('msg', function () {});
+								chrome.notifications.clear('msg', function () {}); // empty function for opera
 							}, 5000);
 						});
 					}
