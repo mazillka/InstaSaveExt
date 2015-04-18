@@ -3,7 +3,7 @@
 
 	"name" : "InstaSave",
 	"short_name" : "InstaSave",
-	"version" : "1.8",
+	"version" : "1.10",
 	"author" : "Mazillka",
 	"description" : "The easiest way to download photos and videos from Instagram.com",
 
@@ -15,7 +15,7 @@
 		"128" : "icons/128x128.png"
 	},
 
-	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs", "downloads"],
+	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs", "downloads", "notifications"],
 
 	"background" : {
 		"persistent" : false,
@@ -30,5 +30,14 @@
 		}
 	],
 
-	"options_page" : "html/donate.html"
+	"options_page" : "html/donate.html",
+	
+	"commands" : {
+		"Save as..." : {
+			"suggested_key" : {
+				"default" : "Alt+S"
+			},
+			"description" : "Save image or vaideo under the mouse cursor"
+		}
+	}
 }
