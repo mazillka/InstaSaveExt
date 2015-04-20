@@ -28,7 +28,7 @@ chrome.extension.onMessage.addListener(function (request) {
 		UpdateContextMenu('menu', 'Save video as...', true);
 		break;
 	case 'none':
-		UpdateContextMenu('menu', 'nothin to save', false);
+		UpdateContextMenu('menu', 'Nothin to save', false);
 		break;
 	}
 });
