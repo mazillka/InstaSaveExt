@@ -12,7 +12,8 @@ function SendMessage(type, link) {
 	});
 }
 
-function GetUrl(element) {
+// TODO: 
+function GetUrl(element) { 
 	var Url;
 	var imgUrl = element.style.backgroundImage.replace("url(", "").replace(")", "");
 	var videoUrl = element.parentElement.getAttribute("src");
@@ -40,27 +41,27 @@ document.addEventListener("mousedown", function (event) {
 	}
 });
 
-function GetElementUnderCursor() {
-	var x = document.querySelector(":hover");
-	while (x) {
-		var xxx = x;
-		x = xxx.querySelector(":hover");
-	}
-	return xxx;
-}
+// function GetElementUnderCursor() {
+	// var x = document.querySelector(":hover");
+	// while (x) {
+		// var xxx = x;
+		// x = xxx.querySelector(":hover");
+	// }
+	// return xxx;
+// }
 
-chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
-	if (request.method == "getUrl") {
-		var url = GetUrl(GetElementUnderCursor());
+// chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
+	// if (request.method == "getUrl") {
+		// var url = GetUrl(GetElementUnderCursor());
 
-		if (url.indexOf("n.jpg") > 0 || url.indexOf("n.mp4") > 0) {
-			sendResponse({
-				url : url
-			});
-		} else {
-			sendResponse({
-				url : "none"
-			});
-		}
-	}
-});
+		// if (url.indexOf("n.jpg") > 0 || url.indexOf("n.mp4") > 0) {
+			// sendResponse({
+				// url : url
+			// });
+		// } else {
+			// sendResponse({
+				// url : "none"
+			// });
+		// }
+	// }
+// });

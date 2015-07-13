@@ -34,38 +34,38 @@ chrome.contextMenus.onClicked.addListener(function (info) {
 	});
 });
 
-chrome.commands.onCommand.addListener(function (command) {
-	switch (command) {
-	case "Save as...":
-		chrome.tabs.query({
-			active : true
-		}, function (tab) {
-			chrome.tabs.sendMessage(tab[0].id, {
-				method : "getUrl"
-			}, function (response) {
-				try {
-					if (response.url != "none") {
-						chrome.downloads.download({
-							url : response.url
-						});
-					} else {
-						chrome.notifications.create("msg", {
-							type : "basic",
-							title : "InstaSave",
-							message : "Nothin to save, place cursor on image or video and try again",
-							iconUrl : "../icons/128x128.png"
-						}, function () {
-							setTimeout(function () {
-								chrome.notifications.clear("msg", function () {}); // empty function for opera
-							}, 5000);
-						});
-					}
-				} catch (e) {}
-			});
-		});
-		break;
-	}
-});
+// chrome.commands.onCommand.addListener(function (command) {
+	// switch (command) {
+	// case "Save as...":
+		// chrome.tabs.query({
+			// active : true
+		// }, function (tab) {
+			// chrome.tabs.sendMessage(tab[0].id, {
+				// method : "getUrl"
+			// }, function (response) {
+				// try {
+					// if (response.url != "none") {
+						// chrome.downloads.download({
+							// url : response.url
+						// });
+					// } else {
+						// chrome.notifications.create("msg", {
+							// type : "basic",
+							// title : "InstaSave",
+							// message : "Nothin to save, place cursor on image or video and try again",
+							// iconUrl : "../icons/128x128.png"
+						// }, function () {
+							// setTimeout(function () {
+								// chrome.notifications.clear("msg", function () {}); // empty function for opera
+							// }, 5000);
+						// });
+					// }
+				// } catch (e) {}
+			// });
+		// });
+		// break;
+	// }
+// });
 
 chrome.runtime.onInstalled.addListener(function (details) {
 	if (details.reason === "install") {
