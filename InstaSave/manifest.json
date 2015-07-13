@@ -15,7 +15,7 @@
 		"128" : "icons/128x128.png"
 	},
 
-	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs", "downloads", "notifications"],
+	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs", "downloads", "notifications", "storage", "unlimitedStorage"],
 
 	"background" : {
 		"persistent" : false,
@@ -30,7 +30,7 @@
 		}
 	],
 
-	"options_page" : "html/donate.html",
+	"options_page" : "html/options.html",
 	
 	"commands" : {
 		"Save as..." : {

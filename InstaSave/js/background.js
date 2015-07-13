@@ -1,6 +1,6 @@
 var Url;
 
-function CreateContextMenu(titleValue){
+function CreateContextMenu(titleValue) {
 	chrome.contextMenus.removeAll();
 	chrome.contextMenus.create({
 		id : "menu",
@@ -13,7 +13,7 @@ function CreateContextMenu(titleValue){
 
 chrome.extension.onMessage.addListener(function (request) {
 	Url = request.Link;
-	
+
 	switch (request.Type) {
 	case "image":
 		CreateContextMenu("Save image as...");
@@ -27,11 +27,21 @@ chrome.extension.onMessage.addListener(function (request) {
 	}
 });
 
-chrome.contextMenus.onClicked.addListener(function (info) {
-	chrome.downloads.download({
-		url : Url,
-		saveAs : false // TODO: make option
+function DownloadMedia(mediaUrl) {
+	chrome.storage.local.get({
+		"showDialog" : false,
+	}, function (items) {
+		if (items.showDialog != null) {
+			chrome.downloads.download({
+				url : mediaUrl,
+				saveAs : items.showDialog
+			});
+		}
 	});
+}
+
+chrome.contextMenus.onClicked.addListener(function (info) {
+	DownloadMedia(Url);
 });
 
 chrome.commands.onCommand.addListener(function (command) {
@@ -45,9 +55,7 @@ chrome.commands.onCommand.addListener(function (command) {
 			}, function (response) {
 				try {
 					if (response.url != "none") {
-						chrome.downloads.download({
-							url : response.url
-						});
+						DownloadMedia(response.url);
 					} else {
 						chrome.notifications.create("msg", {
 							type : "basic",
@@ -72,9 +80,15 @@ chrome.runtime.onInstalled.addListener(function (details) {
 		chrome.tabs.create({
 			url : "http://mazillka.in.ua/donate/"
 		});
+		chrome.tabs.create({
+			'url' : chrome.extension.getURL('html/options.html')
+		});
 	} else if (details.reason === "update") {
 		chrome.tabs.create({
 			url : "http://mazillka.in.ua/donate/"
+		});
+		chrome.tabs.create({
+			'url' : chrome.extension.getURL('html/options.html')
 		});
 	}
 });

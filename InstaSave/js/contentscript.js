@@ -4,25 +4,25 @@ function SendMessage(type, link) {
 		Link : link
 	});
 }
- 
-function GetUrl(element) { 
+
+function GetUrl(element) {
 	var Url;
-	try{
+	try {
 		var imgUrl = element.parentElement.getAttribute("src");
 		var videoUrl = element.previousSibling.firstChild.getAttribute("src");
-	} catch(e) {}
-	
+	} catch (e) {}
+
 	// console.log("Image: " + imgUrl);
 	// console.log("Video: " + videoUrl);
-	
-	if (videoUrl === undefined){
+
+	if (videoUrl === undefined) {
 		return imgUrl;
 	}
-	
-	if(imgUrl === null){
+
+	if (imgUrl === null) {
 		return videoUrl;
 	}
-	
+
 	return null;
 }
 
@@ -31,16 +31,16 @@ document.addEventListener("mousedown", function (event) {
 		var url = GetUrl(event.srcElement);
 
 		//console.log("Url: " + url);
-		
-		if(url === null){
+
+		if (url === null) {
 			SendMessage("none", "none");
 			return;
 		}
-		
+
 		if (url.indexOf("n.jpg") > 0) {
 			SendMessage("image", url);
 			return;
-		} 
+		}
 		if (url.indexOf("n.mp4") > 0) {
 			SendMessage("video", url);
 			return;
@@ -61,13 +61,13 @@ chrome.extension.onMessage.addListener(function (request, sender, sendResponse) 
 	if (request.method == "getUrl") {
 		var url = GetUrl(GetElementUnderCursor());
 
-		if(url === null){
+		if (url === null) {
 			sendResponse({
 				url : "none"
 			});
 			return;
 		}
-		
+
 		if (url.indexOf("n.jpg") > 0 || url.indexOf("n.mp4") > 0) {
 			sendResponse({
 				url : url
