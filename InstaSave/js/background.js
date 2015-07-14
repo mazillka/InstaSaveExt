@@ -15,6 +15,9 @@ chrome.extension.onMessage.addListener(function (request) {
 	Url = request.Link;
 
 	switch (request.Type) {
+	case "create":
+		CreateContextMenu("Save as...");
+		break;
 	case "image":
 		CreateContextMenu("Save image as...");
 		break;

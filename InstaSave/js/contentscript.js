@@ -1,3 +1,10 @@
+window.onload = function () {
+	chrome.extension.sendMessage({
+		Type : "create",
+		Link : "none"
+	});
+}
+
 function SendMessage(type, link) {
 	chrome.extension.sendMessage({
 		Type : type,
