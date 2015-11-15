@@ -15,7 +15,7 @@
 		"128" : "icons/128x128.png"
 	},
 
-	"permissions" : ["*://instagram.com/*", "contextMenus", "tabs", "downloads", "notifications", "storage", "unlimitedStorage"],
+	"permissions" : ["*://*.instagram.com/*", "contextMenus", "tabs", "downloads", "notifications", "storage", "unlimitedStorage"],
 
 	"background" : {
 		"persistent" : false,
@@ -25,19 +25,10 @@
 	"content_scripts" : [{
 			"all_frames" : true,
 			"js" : ["js/contentscript.js"],
-			"matches" : ["*://instagram.com/*"],
+			"matches" : ["*://*.instagram.com/*"],
 			"run_at" : "document_idle"
 		}
 	],
 
-	"options_page" : "html/options.html",
-	
-	"commands" : {
-		"Save as..." : {
-			"suggested_key" : {
-				"default" : "Alt+S"
-			},
-			"description" : "Save image or video under the mouse cursor"
-		}
-	}
+	"options_page" : "html/options.html"
 }
