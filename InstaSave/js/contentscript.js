@@ -1,18 +1,3 @@
-Array.prototype.find = function (id) {
-	for (var i in this) {
-		if (this[i].id === id) {
-			return this[i];
-		}
-	}
-};
-
-window.onload = function () {
-	chrome.extension.sendMessage({
-		Type : "create",
-		Link : "none"
-	});
-};
-
 function SendMessage(type, link) {
 	chrome.extension.sendMessage({
 		Type : type,
