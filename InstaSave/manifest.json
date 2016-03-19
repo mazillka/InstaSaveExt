@@ -15,7 +15,7 @@
 		"128" : "icons/128x128.png"
 	},
 
-	"permissions" : ["*://*.instagram.com/*", "contextMenus", "tabs", "downloads", "storage", "unlimitedStorage"],
+	"permissions" : ["*://*.instagram.com/*", "contextMenus", "downloads", "storage", "unlimitedStorage"],
 
 	"background" : {
 		"persistent" : false,
