@@ -55,15 +55,9 @@ chrome.contextMenus.onClicked.addListener(function (info) {
 chrome.runtime.onInstalled.addListener(function (details) {
 	if (details.reason === "install") {
 		chrome.tabs.create({
-			url : "http://mazillka.in.ua/donate/"
-		});
-		chrome.tabs.create({
 			'url' : chrome.extension.getURL('html/options.html')
 		});
 	} else if (details.reason === "update") {
-		chrome.tabs.create({
-			url : "http://mazillka.in.ua/donate/"
-		});
 		chrome.tabs.create({
 			'url' : chrome.extension.getURL('html/options.html')
 		});
