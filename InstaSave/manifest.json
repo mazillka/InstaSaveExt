@@ -1,34 +1,33 @@
 {
-	"manifest_version" : 2,
+    "manifest_version": 2,
 
-	"name" : "InstaSave",
-	"short_name" : "InstaSave",
-	"version" : "1.33",
-	"author" : "Andrew Shevchuk-Yuganets(Mazillka)",
-	"description" : "The easiest way to download photos and videos from Instagram.com",
+    "name": "Easy Save For Instagram",
+    "short_name": "EasySave",
+    "version": "1.33",
+    "author": "Andrii Shevchuk-Yuhanets",
+    "description": "The easiest way to download photos and videos from Instagram.com",
 
-	"icons" : {
-		"16" : "icons/16x16.png",
-		"32" : "icons/32x32.png",
-		"48" : "icons/48x48.png",
-		"64" : "icons/64x64.png",
-		"128" : "icons/128x128.png"
-	},
+    "icons": {
+        "16": "icons/16x16.png",
+        "32": "icons/32x32.png",
+        "48": "icons/48x48.png",
+        "64": "icons/64x64.png",
+        "128": "icons/128x128.png"
+    },
 
-	"permissions" : ["*://*.instagram.com/*", "contextMenus", "downloads", "storage", "unlimitedStorage"],
+    "permissions": ["*://*.instagram.com/*", "contextMenus", "downloads", "storage", "unlimitedStorage"],
 
-	"background" : {
-		"persistent" : false,
-		"scripts" : ["js/background.js"]
-	},
+    "background": {
+        "persistent": false,
+        "scripts": ["js/background.js"]
+    },
 
-	"content_scripts" : [{
-			"all_frames" : true,
-			"js" : ["js/contentscript.js"],
-			"matches" : ["*://*.instagram.com/*"],
-			"run_at" : "document_idle"
-		}
-	],
+    "content_scripts": [{
+        "all_frames": true,
+        "js": ["js/contentscript.js"],
+        "matches": ["*://*.instagram.com/*"],
+        "run_at": "document_idle"
+    }],
 
-	"options_page" : "html/options.html"
+    "options_page": "html/options.html"
 }

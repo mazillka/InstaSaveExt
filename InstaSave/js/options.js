@@ -1,21 +1,21 @@
-document.addEventListener('DOMContentLoaded', function () {
-	document.getElementById("showSaveDialogCheckBox").addEventListener('change', function(){
-		var checkedSaveDialog = document.getElementById("showSaveDialogCheckBox").checked;
+document.addEventListener('DOMContentLoaded', function() {
+    var checkBox = document.getElementById("showSaveDialogCheckBox");
 
-		chrome.storage.local.set({
-			"showDialog" : checkedSaveDialog,
-		});
-	});
+    checkBox.addEventListener('change', function() {
+        chrome.storage.local.set({
+            "showDialog": checkBox.checked,
+        });
+    });
 
-	chrome.storage.local.get({
-		"showDialog" : false,
-	}, function (items) {
-		if (items.showDialog != null) {
-			document.getElementById("showSaveDialogCheckBox").checked = items.showDialog;
-		}
-	});
+    chrome.storage.local.get({
+        "showDialog": false,
+    }, function(items) {
+        if (items.showDialog) {
+            checkBox.checked = items.showDialog;
+        }
+    });
 });
 
-document.addEventListener("contextmenu", function (event) {
-	event.preventDefault();
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
 });
