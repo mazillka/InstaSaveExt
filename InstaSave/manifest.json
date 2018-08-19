@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
 
-    "name": "InstaSave",
-    "short_name": "InstaSave",
-    "version": "1.33",
+    "name": "Save for Instagram",
+    "short_name": "Save for Instagram",
+    "version": "1.34",
     "author": "Andrii Shevchuk-Yuhanets(Mazillka)",
     "description": "The easiest way to download photos and videos from Instagram.com",
 
