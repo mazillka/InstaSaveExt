@@ -11,13 +11,11 @@ function CreateContextMenu() {
     });
 }
 
-chrome.extension.onMessage.addListener(function(request) {
+chrome.extension.onMessage.addListener(function (request) {
     Url = request.Link;
 
     switch (request.Type) {
-        case "create":
-        case "image":
-        case "video":
+        case "media":
             CreateContextMenu();
             break;
 
@@ -27,24 +25,18 @@ chrome.extension.onMessage.addListener(function(request) {
     }
 });
 
-function DownloadMedia(mediaUrl) {
+chrome.contextMenus.onClicked.addListener(function () {
     chrome.storage.local.get({
         "showDialog": false,
-    }, function(items) {
-        if (items.showDialog) {
-            chrome.downloads.download({
-                url: mediaUrl,
-                saveAs: items.showDialog
-            });
-        }
+    }, function (items) {
+        chrome.downloads.download({
+            url: Url,
+            saveAs: items.showDialog
+        });
     });
-}
-
-chrome.contextMenus.onClicked.addListener(function(info) {
-    DownloadMedia(Url);
 });
 
-chrome.runtime.onInstalled.addListener(function(details) {
+chrome.runtime.onInstalled.addListener(function () {
     chrome.tabs.create({
         'url': chrome.extension.getURL('html/options.html')
     });

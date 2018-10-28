@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var checkBox = document.getElementById("showSaveDialogCheckBox");
 
-    checkBox.addEventListener('change', function() {
+    checkBox.addEventListener('change', function () {
         chrome.storage.local.set({
             "showDialog": checkBox.checked,
         });
@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     chrome.storage.local.get({
         "showDialog": false,
-    }, function(items) {
+    }, function (items) {
         if (items.showDialog) {
             checkBox.checked = items.showDialog;
         }
     });
 });
 
-document.addEventListener("contextmenu", function(event) {
+document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
 });
