@@ -1,21 +1,19 @@
-function SendMessage(type, link) {
+const IsNotNull = (obj) => obj !== undefined && obj !== "none" && obj !== null;
+
+const RemoveEventFromElement = (element) => {
+    var old_element = element
+    var new_element = old_element.cloneNode(true);
+    old_element.parentNode.replaceChild(new_element, old_element);
+};
+
+const SendMessage = (type, link) => {
     chrome.extension.sendMessage({
         Type: type,
         Link: link
     });
-}
+};
 
-function IsNotNull(obj) {
-    return obj !== undefined && obj != 'none' && obj !== null;
-}
-
-function RemoveEventFromElement(element) {
-    var old_element = element
-    var new_element = old_element.cloneNode(true);
-    old_element.parentNode.replaceChild(new_element, old_element);
-}
-
-document.addEventListener("mousedown", function (event) {
+document.addEventListener("mousedown", (event) => {
     if (event.button === 2 /* right mouse button */ ) {
         var parentNode = event.srcElement.parentNode.parentNode;
 

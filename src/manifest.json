@@ -19,15 +19,15 @@
 
     "background": {
         "persistent": false,
-        "scripts": ["js/background.js"]
+        "scripts": ["background.js"]
     },
 
     "content_scripts": [{
         "all_frames": true,
-        "js": ["js/contentscript.js"],
+        "js": ["contentscript.js"],
         "matches": ["*://*.instagram.com/*"],
         "run_at": "document_idle"
     }],
 
-    "options_page": "html/options.html"
+    "options_page": "options.html"
 }
