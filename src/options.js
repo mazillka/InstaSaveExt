@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     checkBox.addEventListener("change", () => {
         chrome.storage.local.set({
-            showDialog: checkBox.checked,
+            showDialog: checkBox.checked
         });
     });
 
     chrome.storage.local.get({
-        showDialog: false,
+        showDialog: false
     }, (items) => {
         if (items.showDialog) {
             checkBox.checked = items.showDialog;
@@ -18,6 +18,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-});
+document.addEventListener("contextmenu", (event) => event.preventDefault());
