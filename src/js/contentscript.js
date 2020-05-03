@@ -1,3 +1,5 @@
+import extensionizer  from "extensionizer";
+
 const IsNotNull = (obj) => obj !== undefined && obj !== "none" && obj !== null;
 
 const RemoveEventFromElement = (element) => {
@@ -7,7 +9,7 @@ const RemoveEventFromElement = (element) => {
 };
 
 const SendMessage = (type, link) => {
-    chrome.extension.sendMessage({
+    extensionizer.extension.sendMessage({
         Type: type,
         Link: link
     });

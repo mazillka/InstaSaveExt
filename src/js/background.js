@@ -1,15 +1,17 @@
+import extensionizer  from "extensionizer";
+
 let Url;
 
-chrome.extension.onMessage.addListener((request) => {
+extensionizer.extension.onMessage.addListener((request) => {
     Url = request.Link;
 
     switch (request.Type) {
         case "media":
-            chrome.storage.local.get({
+            extensionizer.storage.local.get({
                 showDialog: false,
             }, (items) => {
-                chrome.contextMenus.removeAll();
-                chrome.contextMenus.create({
+                extensionizer.contextMenus.removeAll();
+                extensionizer.contextMenus.create({
                     id: "menu",
                     enabled: true,
                     title: items.showDialog ? "Save as..." : "Save",
@@ -20,16 +22,16 @@ chrome.extension.onMessage.addListener((request) => {
             break;
 
         default:
-            chrome.contextMenus.removeAll();
+            extensionizer.contextMenus.removeAll();
             break;
     }
 });
 
-chrome.contextMenus.onClicked.addListener(() => {
-    chrome.storage.local.get({
+extensionizer.contextMenus.onClicked.addListener(() => {
+    extensionizer.storage.local.get({
         showDialog: false,
     }, (items) => {
-        chrome.downloads.download({
+        extensionizer.downloads.download({
             url: Url,
             saveAs: items.showDialog
         });

@@ -1,15 +1,16 @@
 import "./options.scss";
+import extensionizer  from "extensionizer";
 
 document.addEventListener("DOMContentLoaded", () => {
     var checkBox = document.querySelector("#showSaveDialogCheckBox");
 
     checkBox.addEventListener("change", () => {
-        chrome.storage.local.set({
+        extensionizer.storage.local.set({
             showDialog: checkBox.checked
         });
     });
 
-    chrome.storage.local.get({
+    extensionizer.storage.local.get({
         showDialog: false
     }, (items) => {
         if (items.showDialog) {
