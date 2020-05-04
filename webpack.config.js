@@ -8,98 +8,111 @@ const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ZipBundlerPlugin = require("webpack-zip-bundler");
 const PrettierPlugin = require("prettier-webpack-plugin");
+const CopyVersionPlugin = require("webpack-copy-version-plugin");
 
 module.exports = {
-    entry: {
-        options: "./src/options.js",
-        contentscript: './src/js/contentscript.js',
-        background: './src/js/background.js',
-    },
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './dist/'),
-    },
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    output: {
-                        comments: false,
-                    },
-                },
-            }),
-            new OptimizeCssAssetsPlugin({
-                cssProcessor: require("cssnano"),
-                cssProcessorPluginOptions: {
-                    preset: ["default", {
-                        discardComments: {
-                            removeAll: true
-                        }
-                    }]
-                }
-            })
-        ],
-    },
-    module: {
-        rules: [
-            // html
-            {
-                test: /\.html$/,
-                use: [{
-                    loader: "html-loader",
-                    options: {
-                        minimize: !devMode,
-                        interpolate: true,
-                        root: path.resolve(__dirname, "src"),
-                        attrs: [":data-src"]
-                    }
-                }]
-            },
+	entry: {
+		options: "./src/options.js",
+		contentscript: "./src/js/contentscript.js",
+		background: "./src/js/background.js",
+	},
+	output: {
+		filename: "[name].js",
+		path: path.resolve(__dirname, "./dist/"),
+	},
+	optimization: {
+		minimizer: [
+			new TerserPlugin({
+				terserOptions: {
+					output: {
+						comments: false,
+					},
+				},
+			}),
+			new OptimizeCssAssetsPlugin({
+				cssProcessor: require("cssnano"),
+				cssProcessorPluginOptions: {
+					preset: [
+						"default",
+						{
+							discardComments: {
+								removeAll: true,
+							},
+						},
+					],
+				},
+			}),
+		],
+	},
+	module: {
+		rules: [
+			// html
+			{
+				test: /\.html$/,
+				use: [
+					{
+						loader: "html-loader",
+						options: {
+							minimize: !devMode,
+							interpolate: true,
+							root: path.resolve(__dirname, "src"),
+							attrs: [":data-src"],
+						},
+					},
+				],
+			},
 
-            // sass, css
-            {
-                test: /\.(scss)|(css)$/,
-                use: [{
-                    loader: MiniCssExtractPlugin.loader
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "postcss-loader",
-                    options: {
-                        plugins: () => {
-                            return [
-                                require("precss"),
-                                require("autoprefixer")
-                            ];
-                        }
-                    }
-                }, {
-                    loader: "sass-loader"
-                }]
-            }
-        ]
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
+			// sass, css
+			{
+				test: /\.(scss)|(css)$/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
+					{
+						loader: "css-loader",
+					},
+					{
+						loader: "postcss-loader",
+						options: {
+							plugins: () => {
+								return [require("precss"), require("autoprefixer")];
+							},
+						},
+					},
+					{
+						loader: "sass-loader",
+					},
+				],
+			},
+		],
+	},
+	plugins: [
+		new CleanWebpackPlugin(),
 
-        new CopyWebpackPlugin([
-            { from: "./src/icons", to: "icons" },
-            { from: "./src/manifest.json", to: "manifest.json" }
-        ]),
+		new CopyVersionPlugin({
+			from: "./package.json",
+			to: "./src/manifest.json",
+		}),
 
-        new HtmlWebPackPlugin({
-            template: "./src/options.html",
-            filename: "./options.html",
-            excludeChunks: ["background", "contentscript"]
-        }),
+		new CopyWebpackPlugin([
+			{ from: "./src/icons", to: "icons" },
+			{ from: "./src/manifest.json", to: "manifest.json" },
+		]),
 
-        new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[name].css"
-        }),
+		new HtmlWebPackPlugin({
+			template: "./src/options.html",
+			filename: "./options.html",
+			excludeChunks: ["background", "contentscript"],
+		}),
 
-        new ZipBundlerPlugin(),
+		new MiniCssExtractPlugin({
+			filename: "[name].css",
+			chunkFilename: "[name].css",
+		}),
 
-        new PrettierPlugin(),
-    ]
+		new ZipBundlerPlugin(),
+
+		new PrettierPlugin(),
+	],
 };
