@@ -1,8 +1,8 @@
 import extensionizer from "extensionizer";
 
-const IsNotNull = (obj) => obj !== undefined && obj !== "none" && obj !== null;
+const IsNotNull = obj => obj !== undefined && obj !== "none" && obj !== null;
 
-const RemoveEventFromElement = (element) => {
+const RemoveEventFromElement = element => {
 	var oldElement = element;
 	var newElement = oldElement.cloneNode(true);
 	oldElement.parentNode.replaceChild(newElement, oldElement);
@@ -15,7 +15,7 @@ const SendMessage = (type, link) => {
 	});
 };
 
-document.addEventListener("mousedown", (event) => {
+document.addEventListener("mousedown", event => {
 	if (event.button === 2 /* right mouse button */) {
 		if (location.href.indexOf("stories") > -1) {
 			const node = event.srcElement.parentNode.parentNode.parentNode.parentNode.parentNode;

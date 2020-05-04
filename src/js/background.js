@@ -2,7 +2,7 @@ import extensionizer from "extensionizer";
 
 let Url;
 
-extensionizer.extension.onMessage.addListener((request) => {
+extensionizer.extension.onMessage.addListener(request => {
 	Url = request.Link;
 
 	switch (request.Type) {
@@ -11,7 +11,7 @@ extensionizer.extension.onMessage.addListener((request) => {
 				{
 					showDialog: false,
 				},
-				(items) => {
+				items => {
 					extensionizer.contextMenus.removeAll();
 					extensionizer.contextMenus.create({
 						id: "menu",
@@ -35,7 +35,7 @@ extensionizer.contextMenus.onClicked.addListener(() => {
 		{
 			showDialog: false,
 		},
-		(items) => {
+		items => {
 			extensionizer.downloads.download({
 				url: Url,
 				saveAs: items.showDialog,

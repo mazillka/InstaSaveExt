@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		{
 			showDialog: false,
 		},
-		(items) => {
+		items => {
 			if (items.showDialog) {
 				checkBox.checked = items.showDialog;
 			}
@@ -22,4 +22,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	);
 });
 
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+document.addEventListener("contextmenu", event => event.preventDefault());
