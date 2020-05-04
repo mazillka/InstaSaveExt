@@ -2,8 +2,11 @@
   "author": "Andrii Shevchuk-Yuhanets",
   "name": "extension",
   "description": "Save for Instagram",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.37.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mazillka/InstaSaveExt"
+  },
   "scripts": {
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production"
@@ -23,6 +26,8 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
+    "prettier": "^2.0.5",
+    "prettier-webpack-plugin": "^1.2.0",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^2.3.6",

@@ -7,6 +7,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ZipBundlerPlugin = require("webpack-zip-bundler");
+const PrettierPlugin = require("prettier-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -96,7 +97,13 @@ module.exports = {
             filename: "[name].css",
             chunkFilename: "[name].css"
         }),
-        
-        new ZipBundlerPlugin()
+
+        new ZipBundlerPlugin(),
+
+        new PrettierPlugin({
+            printWidth: 256,
+            useTabs: true,
+            semi: true
+        }),
     ]
 };
