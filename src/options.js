@@ -2,7 +2,7 @@ import "./options.scss";
 import extensionizer from "extensionizer";
 
 document.addEventListener("DOMContentLoaded", () => {
-	var checkBox = document.querySelector("#showSaveDialogCheckBox");
+	const checkBox = document.querySelector("#showSaveDialogCheckBox");
 
 	checkBox.addEventListener("change", () => {
 		extensionizer.storage.local.set({

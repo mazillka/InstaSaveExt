@@ -3,8 +3,8 @@ import extensionizer from "extensionizer";
 const IsNotNull = obj => obj !== undefined && obj !== "none" && obj !== null;
 
 const RemoveEventFromElement = element => {
-	var oldElement = element;
-	var newElement = oldElement.cloneNode(true);
+	const oldElement = element;
+	const newElement = oldElement.cloneNode(true);
 	oldElement.parentNode.replaceChild(newElement, oldElement);
 };
 
